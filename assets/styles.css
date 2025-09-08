@@ -1054,6 +1054,11 @@ body {
     font-weight: 700;
 }
 
+.contact-form .btn {
+    display: block;
+    margin: 0 auto;
+}
+
 .form-group {
     margin-bottom: 2rem;
 }
