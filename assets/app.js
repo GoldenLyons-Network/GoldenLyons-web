@@ -163,5 +163,343 @@ function showNotification(message, type = 'info') {
 
     document.body.appendChild(notification);
 
-    // ya me dio pereza seguir :c
+    setTimeout(() => {
+        if (notification.parentElement) {
+            notification.style.animation = 'slideOutRight 0.3s forwards';
+            setTimeout(() => {
+                notification.remove();
+            }, 300);
+        }
+    }, 5000);
 }
+
+function initAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    const animatableElements = document.querySelectorAll('.service-card, .community-card, .service-item, .link-card, .stat-item');
+
+    animatableElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(50px)';
+        el.style.transition = 'al 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        observer.observe(el);
+    });
+}
+
+function triggerPageAnimations(pageId) {
+    const pageElements = document.querySelectorAll(`#${pageId} .service-card, #${pageId} .community-card, #${pageId} .service-item, #${pageId} .link-card`);
+
+    pageElements.forEach((el, index) => {
+        setTimeout(() => {
+            el.classList.add('animate-in');
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+        }, index * 100);
+    });
+}
+
+function initStats() {
+    const stats = document.querySelectorAll('.stat-number');
+    
+    stats.forEach((stat, index) => {
+        const target = +stat.getAttribute('data-count');
+        const duration = 2000;
+        const increment = target / (duration / 50);
+        let count = 0;
+
+        const timer = setInterval(() => {
+            count += increment;
+            if (count >= target) {
+                stat.textContent = target;
+                clearInterval(timer);
+            } else {
+                stat.textContent = Math.floor(count);
+            }
+        }, 16);
+
+        stat.style.animationDelay = `${index * 0.2}s`;
+    });
+}
+
+function initScrollEffects() {
+    let ticking = false;
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(updateScrollEffects);
+            ticking = true;
+        }
+    });
+}
+
+function updateScrollEffects() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (currentPage === 'home') {
+        const hero = document.querySelector('.hero');
+        if (hero) {
+            const heroBackground = hero.querySelector('.hero-background');
+            if (heroBackground) {
+                heroBackground.style.transform = `translateY(${scrollTop * 0.5}px)`;
+            }
+        }
+
+        const orbs = document.querySelectorAll('.gradient-orb');
+        orbs.forEach((orb, index) => {
+            const speed = 0.3 + (index * 0.1);
+            orb.style.transform = `translate(${scrollTop * speed * 0.1}px, ${scrollTop + speed}px) scale(${1 + scrollTop * 0.0001})`;
+        });
+    }
+
+    ticking = false;
+}
+
+function initParticleEffects() {
+    createFloatingPartciles();
+    initMouseTracker();
+}
+
+function createFloatingPartciles() {
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+
+    for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'floating-particle';
+        particle.style.cssText = `
+            position: absolute;
+            width: ${Math.random() * 4 + 1}px;
+            height: ${Math.random() * 4 + 1}px;
+            background: rgba(255, 215, 0, ${Math.random() * 0.5 + 0.2});
+            border-radius: 50%;
+            top: ${Math.random() * 100}%;
+            left: ${Math.random() * 100}%;
+            animation: floatUp ${Math.random() * 10 * 10}s linear infinite;
+            animation-delay: ${Math.random() * 10}s;
+            pointer-events: none;
+        `;
+
+        hero.appendChild(particle);
+    }
+}
+
+function initMouseTracker() {
+    document.addEventListener('mousemove', (e) => {
+        const { clientX, clientY } = e;
+        const { innerWidth, innerHeight } = window;
+
+        const xPercent = (clientX / innerWidth) * 100;
+        const yPercent = (clientY / innerHeight) * 100;
+
+        const hero = document.querySelector('.hero');
+        if (hero && currentPage === 'home') {
+            const orbs = document.querySelectorAll('.gradient-orb');
+            orbs.forEach((orb, index) => {
+                const speed = (index + 1) * 0.02;
+                orb.style.transform = `translate(${(xPercent - 50) * speed}px, ${(yPercent - 50) * speed}px) scale(${1 + (xPercent + yPercent) * 0.0001})`;
+            });
+        }
+    });
+}
+
+function initLoadingAnimations() {
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent) {
+        heroContent.style.opacity = '0';
+        heroContent.style.transform = 'translateY(50px)';
+
+        setTimeout(() => {
+            heroContent.style.transition = 'all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            heroContent.style.opacity = '1';
+            heroContent.style.transform = 'translateY(0)';
+        }, 500);
+    } 
+
+    const serviceCards = document.querySelectorAll('.service-card');
+    serviceCards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(50px)';
+        setTimeout(() => {
+            card.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, 1000 + index * 150);
+    });
+}
+
+function scrollToServices() {
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+        servicesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.btn');
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const ripple = document.createElement('span');
+            const rect = btn.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = event.clientX - rect.left - size / 2;
+            const y = event.clientY - rect.top - size / 2;
+
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: 50%;
+                transform: scale(0);
+                animation: ripple 0.6s linear;
+                pointer-events: none;
+            `;
+
+            this.style.position = 'relative';
+            this.style.overflow = 'hidden';
+            btn.appendChild(ripple);
+
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+});
+
+document.addEventListener('cick', () => {
+    if (event.target.matches('a[href^="#"]')) {
+        event.preventDefault();
+        const targetId = event.target.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+
+        if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+});
+
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        if (currentPage === 'home') {
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                const particles = hero.querySelectorAll('.floating-particle');
+                particles.forEach(particle => {
+                    particles.style.left = Math.random() * 100 + '%';
+                    particles.style.top = Math.random() * 100 + '%';
+                });
+            }
+        }
+    }, 250);
+});
+
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideInRight {
+        from {
+            opacity: 0;
+            transform: translateX(100px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slideOutRight {
+        from {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateX(100px);
+        }
+    }
+
+    @keyframes floatUp {
+        from {
+            opacity: 1;
+            transform: translateY(100vh) rotate(0deg);
+        }
+
+        10% {
+            opacity: 1;
+        }
+        
+        90% {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+            transform: translateY(-100px) rotate(360deg);
+        }
+    }
+
+    @keyframes ripple {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+
+    .notification-close {
+        background: none;
+        border: none;
+        color: inherit;
+        cursor: pointer;
+        padding: 0;
+        margin-left: 10px;
+    }
+
+    .floating-particle {
+        z-index: 1;
+    }
+
+    .animate-in {
+        animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+`;
+
+
+
+
+
+
+
+document.head.appendChild(style);
+
+window.addEventListener('error', (e) => {
+    console.error('An error occurred while loading the page.', e.error);
+});
+
+console.log('GoldenLyons website loaded successfully.');
