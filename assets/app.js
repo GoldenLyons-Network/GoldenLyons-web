@@ -490,12 +490,6 @@ style.textContent = `
     }
 `;
 
-
-
-
-
-
-
 document.head.appendChild(style);
 
 window.addEventListener('error', (e) => {
