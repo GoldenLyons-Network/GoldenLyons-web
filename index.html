@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldenLyons - Servicios Premium de Minecraft</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-crown"></i>
+                <span>GoldenLyons</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#hosting" class="nav-link">GoldenHosting</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#development" class="nav-link">GoldenDevelopment</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#builds" class="nav-link">GoldenBuilds</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#community" class="nav-link">GoldenCommunity</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Página Principal -->
+    <main id="home" class="page active">
+        <section class="hero">
+            <div class="hero-background">
+                <div class="particles"></div>
+                <div class="gradient-orb orb-1"></div>
+                <div class="gradient-orb orb-2"></div>
+                <div class="gradient-orb orb-3"></div>
+            </div>
+            <div class="hero-content">
+                <div class="hero-logo">
+                    <i class="fas fa-crown golden-crown"></i>
+                </div>
+                <h1 class="hero-title">
+                    <span class="golden-text">Golden</span><span class="white-text">Lyons</span>
+                </h1>
+                <p class="hero-subtitle">Servicios Premium para tu Servidor de Minecraft</p>
+                <p class="hero-description">
+                    Transformamos tus ideas en experiencias únicas con nuestros servicios profesionales
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="scrollToServices()">
+                        <i class="fas fa-rocket"></i>
+                        Explorar Servicios
+                    </button>
+                    <button class="btn btn-secondary" onclick="openContact()">
+                        <i class="fas fa-envelope"></i>
+                        Contactar
+                    </button>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <div class="scroll-arrow"></div>
+            </div>
+        </section>
+
+        <!-- Servicios -->
+        <section class="services-overview" id="services">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Nuestros Servicios</h2>
+                    <p class="section-subtitle">Soluciones completas para llevar tu servidor al siguiente nivel</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card" onclick="showPage('hosting')">
+                        <div class="service-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3>GoldenHosting</h3>
+                        <p>Mantenimiento profesional, asesoramiento experto y presupuestos personalizados</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Mantenimiento de máquina</li>
+                            <li><i class="fas fa-check"></i> Asesoramiento profesional</li>
+                            <li><i class="fas fa-check"></i> Ofertas por cantidad</li>
+                        </ul>
+                        <button class="btn btn-outline">Ver Más</button>
+                    </div>
+
+                    <div class="service-card" onclick="showPage('development')">
+                        <div class="service-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>GoldenDevelopment</h3>
+                        <p>Desarrollo de plugins, mods y conversión de texturas profesional</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Plugins personalizados</li>
+                            <li><i class="fas fa-check"></i> Mods únicos</li>
+                            <li><i class="fas fa-check"></i> Conversión Java/Bedrock</li>
+                        </ul>
+                        <button class="btn btn-outline">Ver Más</button>
+                    </div>
+
+                    <div class="service-card" onclick="showPage('builds')">
+                        <div class="service-icon">
+                            <i class="fas fa-hammer"></i>
+                        </div>
+                        <h3>GoldenBuilds</h3>
+                        <p>Construcciones profesionales y cursos especializados</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Construcciones detalladas</li>
+                            <li><i class="fas fa-check"></i> Todas las versiones</li>
+                            <li><i class="fas fa-check"></i> Cursos especializados</li>
+                        </ul>
+                        <button class="btn btn-outline">Ver Más</button>
+                    </div>
+
+                    <div class="service-card" onclick="showPage('community')">
+                        <div class="service-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>GoldenCommunity</h3>
+                        <p>Diseño gráfico y marketing para tu comunidad</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Flyers y banners</li>
+                            <li><i class="fas fa-check"></i> Logos personalizados</li>
+                            <li><i class="fas fa-check"></i> Eventos promocionales</li>
+                        </ul>
+                        <button class="btn btn-outline">Ver Más</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <section class="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-icon"><i class="fas fa-tasks"></i></div>
+                        <div class="stat-number" data-count="100">0</div>
+                        <div class="stat-label">Proyectos Completados</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon"><i class="fas fa-heart"></i></div>
+                        <div class="stat-number" data-count="50">0</div>
+                        <div class="stat-label">Clientes Satisfechos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                        <div class="stat-number" data-count="24">0</div>
+                        <div class="stat-label">Soporte 24/7</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon"><i class="fas fa-award"></i></div>
+                        <div class="stat-number" data-count="99">0</div>
+                        <div class="stat-label">% Uptime</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- GoldenHosting -->
+    <main id="hosting" class="page">
+        <section class="page-header">
+            <div class="container">
+                <h1><i class="fas fa-server"></i> GoldenHosting</h1>
+                <p>Servicios de hosting profesional para tu servidor</p>
+            </div>
+        </section>
+        <section class="content">
+            <div class="container">
+                <div class="coming-soon">
+                    <i class="fas fa-tools"></i>
+                    <h2>Próximamente</h2>
+                    <p>Estamos trabajando en esta sección para ofrecerte el mejor servicio de hosting.</p>
+                    <button class="btn btn-primary" onclick="openContact()">Contactar para más información</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- GoldenDevelopment -->
+    <main id="development" class="page">
+        <section class="page-header">
+            <div class="container">
+                <h1><i class="fas fa-code"></i> GoldenDevelopment</h1>
+                <p>Desarrollo personalizado para Minecraft</p>
+            </div>
+        </section>
+        <section class="content">
+            <div class="container">
+                <div class="development-links">
+                    <h2>Encuéntranos en</h2>
+                    <div class="links-grid">
+                        <a href="#" class="link-card discord" target="_blank">
+                            <div class="link-icon">
+                                <i class="fab fa-discord"></i>
+                            </div>
+                            <div class="link-content">
+                                <h3>Discord</h3>
+                                <p>Únete a nuestro servidor de Discord</p>
+                            </div>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+
+                        <a href="#" class="link-card builtbybit" target="_blank">
+                            <div class="link-icon">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            <div class="link-content">
+                                <h3>BuiltByBit</h3>
+                                <p>Nuestros recursos en BuiltByBit</p>
+                            </div>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+
+                        <a href="#" class="link-card spigot" target="_blank">
+                            <div class="link-icon">
+                                <i class="fas fa-plug"></i>
+                            </div>
+                            <div class="link-content">
+                                <h3>SpigotMC</h3>
+                                <p>Plugins en SpigotMC.org</p>
+                            </div>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+
+                        <a href="#" class="link-card polymart" target="_blank">
+                            <div class="link-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="link-content">
+                                <h3>Polymart</h3>
+                                <p>Recursos premium en Polymart</p>
+                            </div>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="development-services">
+                    <h2>Nuestros Servicios de Desarrollo</h2>
+                    <div class="services-list">
+                        <div class="service-item">
+                            <i class="fas fa-plug"></i>
+                            <div class="service-content">
+                                <h3>Plugins Personalizados</h3>
+                                <p>Desarrollo de plugins únicos adaptados a las necesidades de tu servidor</p>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <i class="fas fa-cube"></i>
+                            <div class="service-content">
+                                <h3>Mods Exclusivos</h3>
+                                <p>Creación de modificaciones personalizadas para una experiencia única</p>
+                            </div>
+                        </div>
+                        <div class="service-item">
+                            <i class="fas fa-image"></i>
+                            <div class="service-content">
+                                <h3>Conversión de Texturas</h3>
+                                <p>Adaptación de Java a Bedrock, modificación de tamaños y optimización</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- GoldenBuilds -->
+    <main id="builds" class="page">
+        <section class="page-header">
+            <div class="container">
+                <h1><i class="fas fa-hammer"></i> GoldenBuilds</h1>
+                <p>Construcciones profesionales para Minecraft</p>
+            </div>
+        </section>
+        <section class="content">
+            <div class="container">
+                <div class="coming-soon">
+                    <i class="fas fa-tools"></i>
+                    <h2>Próximamente</h2>
+                    <p>Estamos preparando una galería increíble de nuestras construcciones.</p>
+                    <button class="btn btn-primary" onclick="openContact()">Solicitar presupuesto</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- GoldenCommunity -->
+    <main id="community" class="page">
+        <section class="page-header">
+            <div class="container">
+                <h1><i class="fas fa-users"></i> GoldenCommunity</h1>
+                <p>Diseño y marketing para tu comunidad</p>
+            </div>
+        </section>
+        <section class="content">
+            <div class="container">
+                <div class="community-services">
+                    <div class="services-grid">
+                        <div class="community-card">
+                            <div class="card-icon">
+                                <i class="fas fa-file-image"></i>
+                            </div>
+                            <h3>Flyers</h3>
+                            <p>Diseños atractivos para promocionar tu servidor</p>
+                        </div>
+                        <div class="community-card">
+                            <div class="card-icon">
+                                <i class="fas fa-flag"></i>
+                            </div>
+                            <h3>Banners</h3>
+                            <p>Banners personalizados para todas las plataformas</p>
+                        </div>
+                        <div class="community-card">
+                            <div class="card-icon">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <h3>Logos</h3>
+                            <p>Identidad visual única para tu marca</p>
+                        </div>
+                        <div class="community-card">
+                            <div class="card-icon">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <h3>Anuncios</h3>
+                            <p>Campañas publicitarias efectivas</p>
+                        </div>
+                        <div class="community-card">
+                            <div class="card-icon">
+                                <i class="fas fa-gift"></i>
+                            </div>
+                            <h3>Promociones</h3>
+                            <p>Estrategias promocionales creativas</p>
+                        </div>
+                        <div class="community-card">
+                            <div class="card-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <h3>Eventos</h3>
+                            <p>Organización de eventos para atraer jugadores</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-crown"></i>
+                        <span>GoldenLyons</span>
+                    </div>
+                    <p>Servicios premium para tu servidor de Minecraft</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li><a href="#hosting">GoldenHosting</a></li>
+                        <li><a href="#development">GoldenDevelopment</a></li>
+                        <li><a href="#builds">GoldenBuilds</a></li>
+                        <li><a href="#community">GoldenCommunity</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-envelope"></i> info@goldenlions.com</p>
+                    <p><i class="fab fa-discord"></i> Discord: GoldenLyons</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 GoldenLyons. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Contacto -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Contactar</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="service">Servicio</label>
+                    <select id="service">
+                        <option value="">Seleccionar servicio</option>
+                        <option value="hosting">GoldenHosting</option>
+                        <option value="development">GoldenDevelopment</option>
+                        <option value="builds">GoldenBuilds</option>
+                        <option value="community">GoldenCommunity</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensaje</label>
+                    <textarea id="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="assets/app.js"></script>
+</body>
+
+</html>
