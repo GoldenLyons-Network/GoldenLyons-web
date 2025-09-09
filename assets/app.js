@@ -86,7 +86,7 @@ function showPage(pageId) {
 
 function initModal() {
     const modal = document.getElementById('contactModal');
-    const closeBtn = document.querySelector('.close');
+    const closeBtn = modal.querySelector('.close');
     const form = document.querySelector('.contact-form');
 
     closeBtn.addEventListener('click', closeModal);
