@@ -519,23 +519,65 @@ const buildsData = [
     {
         id: 2,
         src: "assets/images/builds_galery/sonnybuilding_3699974073259261421s2025-9-8-19.59.735_story (1).webp",
-        title: "KOTH Oxidado",
-        description: "Increíble KOTH con robot gigante oxidado",
+        title: "Doomreach",
+        description: "El guardian que lo dio todo para proteger Doomreach",
         category: "art"
     },
     {
         id: 3,
         src: "assets/images/builds_galery/sonnybuilding_3707203666116227847s2025-9-8-19.58.571_story (1).webp",
         title: "Mina PvP",
-        description: "Mina PvP con diseño artístico y funcional",
+        description: "Mina PvP con diseño artístico y funcional, ambientado en un bosque antiguo",
         category: "art"
     },
     {
         id: 4,
         src: "assets/images/builds_galery/sonnybuilding_449873478_843625661040409_140798670910144250_n.webp",
-        title: "KOTH en forma de máscara",
+        title: "Dominio de la inteligencia artificial (KOTH)",
         description: "Diseño funcional y estético",
+        category: "cyberpunk"
+    },
+    {
+        id: 5,
+        src: "assets/images/builds_galery/sonnybuilding_447595139_370299119397427_1844663276953019748_n.webp",
+        title: "Dominio de Mjolnir (KOTH)",
+        description: "Diseño funcional y estético",
+        category: "nordic"
+    },
+    {
+        id: 6,
+        src: "assets/images/builds_galery/sonnybuilding_445701563_440033838646079_1149062904118469741_n.webp",
+        title: "Puerto de los Titanes Hundidos",
+        description: "Diseño funcional y estético",
+        category: "chinese"
+    },
+    {
+        id: 7,
+        src: "assets/images/builds_galery/sonnybuilding_446103786_411250735070932_3751586677511358294_n.webp",
+        title: "Santuario de Jade",
+        description: "Santuario repleto de tesoros custodiado por un rey ambicioso",
         category: "art"
+    },
+    {
+        id: 8,
+        src: "assets/images/builds_galery/sonnybuilding_387265678_1622834588126914_3819432723491743319_n.webp",
+        title: "Palacio del Izun",
+        description: "Un colosal templo oriental custodiado por montañas, símbolo de armonía y poder ancestral",
+        category: "japan"
+    },
+    {
+        id: 9,
+        src: "assets/images/builds_galery/sonnybuilding_294169396_618290282825010_211628421592229299_n.jpg",
+        title: "Molino del Lago",
+        description: "Granja tradicional con un molino y torres que vigilan el agua cercana",
+        category: "mediaeval"
+    },
+    {
+        id: 10,
+        src: "assets/images/builds_galery/sonnybuilding_294169396_618290282825010_211628421592229299_n.jpg",
+        title: "El glorioso palacio de Epoch",
+        description: "Ciudad costera con un palacio y una imponente estatua de un guerrero espartano, simbolizando fuerza y protección.",
+        category: "greek"
     }
 ];
 
