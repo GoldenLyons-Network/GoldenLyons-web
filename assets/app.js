@@ -567,14 +567,14 @@ const buildsData = [
     },
     {
         id: 9,
-        src: "assets/images/builds_galery/sonnybuilding_294169396_618290282825010_211628421592229299_n.jpg",
+        src: "assets/images/builds_galery/sonnybuilding_294169396_618290282825010_211628421592229299_n.webp",
         title: "Molino del Lago",
         description: "Granja tradicional con un molino y torres que vigilan el agua cercana",
         category: "mediaeval"
     },
     {
         id: 10,
-        src: "assets/images/builds_galery/sonnybuilding_294169396_618290282825010_211628421592229299_n.jpg",
+        src: "assets/images/builds_galery/yhujikgkm.jnkm,yhkuj.webp",
         title: "El glorioso palacio de Epoch",
         description: "Ciudad costera con un palacio y una imponente estatua de un guerrero espartano, simbolizando fuerza y protección.",
         category: "greek"
