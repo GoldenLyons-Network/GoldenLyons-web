@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function () {
     initScrollEffects();
     initParticleEffects();
     initLoadingAnimations();
+    initBuildsGallery();
+    initTeamSections();
 });
 
 function initNavigation() {
@@ -202,6 +204,14 @@ function initAnimations() {
 function triggerPageAnimations(pageId) {
     const pageElements = document.querySelectorAll(`#${pageId} .service-card, #${pageId} .community-card, #${pageId} .service-item, #${pageId} .link-card`);
 
+    if (pageId === 'builds') {
+        initBuildsGallery();
+    }
+
+    if (['hosting', 'development', 'builds', 'community'].includes(pageId)) {
+        initTeamSection(pageId);
+    }
+
     pageElements.forEach((el, index) => {
         setTimeout(() => {
             el.classList.add('animate-in');
@@ -382,7 +392,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-document.addEventListener('cick', () => {
+document.addEventListener('click', () => {
     if (event.target.matches('a[href^="#"]')) {
         event.preventDefault();
         const targetId = event.target.getAttribute('href').substring(1);
@@ -497,3 +507,325 @@ window.addEventListener('error', (e) => {
 });
 
 console.log('GoldenLyons website loaded successfully.');
+
+const buildsData = [
+    {
+        id: 1,
+        src: "assets/images/builds_galery/sonnybuilding_3697606792822677663s2025-9-8-19.59.910_story (1).webp",
+        title: "Dungeon Japonesa",
+        description: "Impresionante dungeon con estilo japones",
+        category: "japan"
+    },
+    {
+        id: 2,
+        src: "assets/images/builds_galery/sonnybuilding_3699974073259261421s2025-9-8-19.59.735_story (1).webp",
+        title: "KOTH Oxidado",
+        description: "Increíble KOTH con robot gigante oxidado",
+        category: "art"
+    },
+    {
+        id: 3,
+        src: "assets/images/builds_galery/sonnybuilding_3707203666116227847s2025-9-8-19.58.571_story (1).webp",
+        title: "Mina PvP",
+        description: "Mina PvP con diseño artístico y funcional",
+        category: "art"
+    },
+    {
+        id: 4,
+        src: "assets/images/builds_galery/sonnybuilding_449873478_843625661040409_140798670910144250_n.webp",
+        title: "KOTH en forma de máscara",
+        description: "Diseño funcional y estético",
+        category: "art"
+    }
+];
+
+function initBuildsGallery() {
+    const galleryContainer = document.getElementById('buildsGallery');
+
+    if (!galleryContainer) return;
+
+    galleryContainer.innerHTML = '';
+
+    buildsData.forEach(build => {
+        const galleryItem = document.createElement('div');
+        galleryItem.className = `gallery-item ${build.category}`;
+        galleryItem.dataset.category = build.category;
+
+        galleryItem.innerHTML = `
+            <img src="${build.src}" alt="${build.title}" loading="lazy">
+            <div class="gallery-overlay">
+                <h3 class="gallery-title">${build.title}</h3>
+                <p class="gallery-desc">${build.description}</p>
+            </div>
+        `;
+
+        galleryItem.addEventListener('click', () => openImageModal(build.id));
+        galleryContainer.appendChild(galleryItem);
+    });
+
+    initGalleryFilters();
+}
+
+function initGalleryFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+
+            button.classList.add('active');
+
+            const filter = button.dataset.filter;
+            filterGallery(filter);
+        });
+    });
+}
+
+function filterGallery(category) {
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    galleryItems.forEach(item => {
+        if (category === 'all' || item.dataset.category === category) {
+            item.style.display = 'block';
+            setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0) scale(1)';
+            }, 50);
+        } else {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px) scale(0.95)';
+            setTimeout(() => {
+                item.style.display = 'none';
+            }, 300);
+        }
+    });
+}
+
+function openImageModal(imageId) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const caption = document.getElementById('modalCaption');
+
+    const build = buildsData.find(item => item.id === imageId);
+
+    if (build) {
+        modal.style.display = 'block';
+        modalImg.src = build.src;
+        modalImg.alt = build.title;
+
+        caption.innerHTML = `
+            <h3>${build.title}</h3>
+            <p>${build.description}</p>
+        `;
+
+        document.body.style.overflow = 'hidden';
+        setupModalNavigation(imageId);
+    }
+}
+
+function setupModalNavigation(currentId) {
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    const closeBtn = document.querySelector('.close-modal');
+    const modal = document.getElementById('imageModal');
+
+    const currentIndex = buildsData.findIndex(item => item.id === currentId);
+
+    const navigateTo = (direction) => {
+        let newIndex;
+
+        if (direction === 'next') {
+            newIndex = (currentIndex + 1) % buildsData.length;
+        } else {
+            newIndex = (currentIndex - 1 + buildsData.length) % buildsData.length;
+        }
+
+        openImageModal(buildsData[newIndex].id);
+    };
+
+    prevBtn.onclick = () => navigateTo('prev');
+    nextBtn.onclick = () => navigateTo('next');
+
+    closeBtn.onclick = closeImageModal;
+
+    modal.onclick = (e) => {
+        if (e.target === modal) {
+            closeImageModal();
+        }
+    };
+
+    const keyHandler = (e) => {
+        if (e.key === 'Escape') {
+            closeImageModal();
+        } else if (e.key === 'ArrowLeft') {
+            navigateTo('prev');
+        } else if (e.key === 'ArrowRight') {
+            navigateTo('next');
+        }
+    };
+
+    document.addEventListener('keydown', keyHandler);
+
+    modal._keyHandler = keyHandler;
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+
+    if (modal._keyHandler) {
+        document.removeEventListener('keydown', modal._keyHandler);
+        delete modal._keyHandler;
+    }
+}
+
+function handleKeyNavigation(e) {
+    if (e.key === 'Escape') {
+        closeImageModal();
+    } else if (e.key === 'ArrowLeft') {
+        document.querySelector('.prev-btn').click();
+    } else if (e.key === 'ArrowRight') {
+        document.querySelector('.next-btn').click();
+    }
+}
+
+const teamData = {
+    hosting: [
+        {
+            id: "hosting_1",
+            name: "7Str1kes",
+            role: "Especialista en Infraestructura & Redes",
+            avatar: "assets/images/team/hosting/hosting-7str1kes.png",
+            image: "assets/images/team/hosting/hosting-7str1kes.png",
+            description: "",
+            skills: ["Servidores", "Redes", "Seguridad", "Optimización", "Instalaciones"]
+        }
+    ],
+    development: [
+        {
+            id: "dev_1",
+            name: "7Str1kes",
+            role: "Jefe de Desarrollo",
+            avatar: "assets/images/team/development/development-7str1kes.png",
+            image: "assets/images/team/development/development-7str1kes.png",
+            description: "",
+            skills: ["Java", "JavaScript", "Python", "Bases de Datos"]
+        }
+    ],
+    builds: [
+        {
+            id: "builder_1",
+            name: "SonnyBuilding",
+            role: "Jefe de Construcción",
+            avatar: "assets/images/team/builds/builds-sonnybuilding.png",
+            image: "assets/images/team/builds/builds-sonnybuilding.png",
+            description: "",
+            skills: ["Medieval", "Detalles", "FAWE", "Estructuras", "Arceon", "VoxelSniper"]
+        }
+    ],
+    community: [
+        {
+            id: "community_1",
+            name: "xLolee",
+            role: "Jefa de Comunidad & Diseño",
+            avatar: "assets/images/team/community/community-xlolee.png",
+            image: "assets/images/team/community/community-xlolee.png",
+            description: "",
+            skills: ["Photoshop", "Diseño", "Branding", "Publicidad"]
+        }
+    ]
+};
+
+function initTeamSections() {
+    initTeamSection('hosting');
+    initTeamSection('development');
+    initTeamSection('builds');
+    initTeamSection('community');
+}
+
+function initTeamSection(section) {
+    const teamSection = document.querySelector(`#${section} .team-grid`);
+
+    if (!teamSection) return;
+
+    const members = teamData[section];
+
+    if (!members || members.length === 0) return;
+
+    teamSection.innerHTML = '';
+
+    members.forEach(member => {
+        const memberElement = document.createElement('div');
+        memberElement.className = 'team-member';
+        memberElement.dataset.member = member.id;
+
+        memberElement.innerHTML = `
+            <div class="member-avatar">
+                <img src="${member.avatar}" alt="${member.name}">
+            </div>
+            <div class="member-info">
+                <h3>${member.name}</h3>
+                <p>${member.role}</p>
+            </div>
+        `;
+
+        memberElement.addEventListener('click', () => openMemberModal(member));
+        teamSection.appendChild(memberElement);
+    });
+}
+
+function openMemberModal(member) {
+    const modal = document.getElementById('memberModal');
+    const modalImg = document.getElementById('modalMemberImg');
+    const modalName = document.getElementById('modalMemberName');
+    const modalRole = document.getElementById('modalMemberRole');
+    const modalDesc = document.getElementById('modalMemberDescription');
+    const modalSkills = document.getElementById('modalMemberSkills');
+
+    if (!modal || !modalImg) return;
+
+    modalImg.src = member.image;
+    modalImg.alt = member.name;
+    modalName.textContent = member.name;
+    modalRole.textContent = member.role;
+    modalDesc.textContent = member.description;
+
+    modalSkills.innerHTML = '';
+    if (member.skills && member.skills.length > 0) {
+        member.skills.forEach(skill => {
+            const skillElement = document.createElement('span');
+            skillElement.className = 'skill-tag';
+            skillElement.textContent = skill;
+            modalSkills.appendChild(skillElement);
+        });
+    }
+
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+
+    const closeBtn = modal.querySelector('.close');
+    closeBtn.onclick = () => closeMemberModal();
+
+    modal.onclick = (e) => {
+        if (e.target === modal) {
+            closeMemberModal();
+        }
+    };
+
+    document.addEventListener('keydown', handleMemberModalKeydown);
+}
+
+function closeMemberModal() {
+    const modal = document.getElementById('memberModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+    document.removeEventListener('keydown', handleMemberModalKeydown);
+}
+
+function handleMemberModalKeydown(e) {
+    if (e.key === 'Escape') {
+        closeMemberModal();
+    }
+}
+

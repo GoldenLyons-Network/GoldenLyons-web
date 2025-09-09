@@ -189,6 +189,17 @@
                     <p>Estamos trabajando en esta sección para ofrecerte el mejor servicio de hosting.</p>
                     <button class="btn btn-primary" onclick="openContact()">Contactar para más información</button>
                 </div>
+
+                <section class="team-section">
+                    <div class="container">
+                        <div class="section-header">
+                            <h2 class="section-title">Nuestro Equipo de Hosting</h2>
+                            <p class="section-subtitle">Expertos en infraestructura y mantenimiento de servidores</p>
+                        </div>
+                        <div class="team-grid">
+                        </div>
+                    </div>
+                </section>
             </div>
         </section>
     </main>
@@ -285,6 +296,17 @@
                         </div>
                     </div>
                 </div>
+
+                <section class="team-section">
+                    <div class="container">
+                        <div class="section-header">
+                            <h2 class="section-title">Nuestro Equipo de Desarrollo</h2>
+                            <p class="section-subtitle">Programadores y artistas especializados en Minecraft</p>
+                        </div>
+                        <div class="team-grid">
+                        </div>
+                    </div>
+                </section>
             </div>
         </section>
     </main>
@@ -299,12 +321,42 @@
         </section>
         <section class="content">
             <div class="container">
-                <div class="coming-soon">
-                    <i class="fas fa-tools"></i>
-                    <h2>Próximamente</h2>
-                    <p>Estamos preparando una galería increíble de nuestras construcciones.</p>
-                    <button class="btn btn-primary" onclick="openContact()">Solicitar presupuesto</button>
+                <div class="section-header">
+                    <h2 class="section-title">Nuestra Galería de Construcciones</h2>
+                    <p class="section-subtitle">Descubre nuestras creaciones más impresionantes</p>
                 </div>
+    
+                <div class="gallery-filters">
+                    <button class="filter-btn active" data-filter="all">Todas</button>
+                    <button class="filter-btn" data-filter="japan">Japonesa</button>
+                    <button class="filter-btn" data-filter="greek">Griego</button>
+                    <button class="filter-btn" data-filter="mediaeval">Mediaval</button>
+                    <button class="filter-btn" data-filter="art">Arte</button>
+                </div>
+    
+                <div id="buildsGallery" class="gallery-grid">
+                </div>
+    
+                <div id="imageModal" class="modal">
+                    <span class="close-modal">&times;</span>
+                    <img class="modal-content" id="modalImage" alt="">
+                    <div id="modalCaption"></div>
+                    <div class="modal-nav">
+                        <button class="nav-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                        <button class="nav-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <section class="team-section">
+                    <div class="container">
+                        <div class="section-header">
+                            <h2 class="section-title">Nuestro Equipo de Construcción</h2>
+                            <p class="section-subtitle">Artistas y arquitectos especializados en Minecraft</p>
+                        </div>
+                        <div class="team-grid">
+                        </div>
+                    </div>
+                </section>
             </div>
         </section>
     </main>
@@ -365,6 +417,17 @@
                         </div>
                     </div>
                 </div>
+
+                <section class="team-section">
+                    <div class="container">
+                        <div class="section-header">
+                            <h2 class="section-title">Nuestro Equipo de Comunidad</h2>
+                            <p class="section-subtitle">Expertos en diseño, marketing y gestión de comunidades</p>
+                        </div>
+                        <div class="team-grid">
+                        </div>
+                    </div>
+                </section>
             </div>
         </section>
     </main>
@@ -376,7 +439,7 @@
                 <div class="footer-section">
                     <div class="footer-logo">
                         <i class="fas fa-crown"></i>
-                        <span>GLStudios</span>
+                        <b><span class="golden-text">GL</span><span class="white-text">Studios</span></b>
                     </div>
                     <p>Servicios premium para tu servidor de Minecraft</p>
                 </div>
@@ -400,6 +463,29 @@
             </div>
         </div>
     </footer>
+
+    <div id="memberModal" class="modal">
+        <div class="modal-content member-modal">
+            <span class="close">&times;</span>
+            <div class="member-modal-content">
+                <div class="member-modal-image">
+                    <img id="modalMemberImg" src="" alt="">
+                </div>
+                <div class="member-modal-info">
+                    <h2 id="modalMemberName"></h2>
+                    <h3 id="modalMemberRole"></h3>
+                    <div id="modalMemberDescription" class="member-description"></div>
+                    <div class="member-skills">
+                        <h4>Habilidades</h4>
+                        <div class="skills-list" id="modalMemberSkills"></div>
+                    </div>
+                    <div class="member-contact">
+                        <a href="#" class="btn btn-outline"><i class="fab fa-discord"></i> Contactar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Contacto -->
     <div id="contactModal" class="modal">
