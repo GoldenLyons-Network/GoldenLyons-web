@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initLoadingAnimations();
     initBuildsGallery();
     initTeamSections();
+    setupScrollIndicator();
 });
 
 function initNavigation() {
@@ -354,6 +355,15 @@ function scrollToServices() {
     const servicesSection = document.getElementById('services');
     if (servicesSection) {
         servicesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+function setupScrollIndicator() {
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    if (scrollIndicator) {
+        scrollIndicator.addEventListener('click', () => {
+            scrollToServices();
+        });
     }
 }
 
